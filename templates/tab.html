@@ -1,0 +1,180 @@
+{% load static %}
+{# first/templates/tab.html #}
+{% load render_table from django_tables2 %}
+{% load render_table from django_tables2 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="{% static 'first/scri.js' %}"></script>
+    <link rel = "stylesheet"   type = "text/css"    href = " {% static 'first/style.css' %}"  >
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 style="background-color:#d0d3d4 ; font-size: 50px" > <center>ANKU ERP HRM system </h1>
+<h2 > <center>Dashboard </h2></center>
+<div>
+ <!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="opentab(event, 'Admin')"><a class="nav-link" href="#tab-1" data-target="., .etabi-img1" data-toggle="tab"></a>Admin</button>
+  <button class="tablinks" onclick="opentab(event, 'recruitment')">Recruitment</button>
+  <button class="tablinks" onclick="opentab(event, 'Leave')">Leave Management</button>
+    <button class="tablinks" onclick="opentab(event, 'Dashboard')">Staff managemnt</button>
+  <button class="tablinks" onclick="opentab(event, 'myinfo')">My info</button>
+  <button class="tablinks" onclick="opentab(event, 'Directory')">Staff Performence</button>
+     <button class="tablinks" onclick="opentab(event, 'Directory')">Recruitment</button>
+     <button class="tablinks" onclick="opentab(event, 'Directory')">Reports</button>
+
+</div>
+<!-- Tab content -->
+
+
+<div id="myinfo" class="tabcontent">
+
+
+    <h3>Myinfo</h3>
+    <p>Employee profile updated here.</p>
+</div>
+
+<div id="recruitment" class="tabcontent">
+
+    <br>
+        Name: <input type"textfield">
+      <br>
+        Age : <input type="textfield">
+  <h3>recruitment</h3>
+  <p>recruitment process taken place here</p>
+</div>
+
+<div id="Leave" class="tabcontent">
+  <h3>Leave</h3>
+  <p>leave comes under here</p>
+</div>
+
+<div id="Admin" class="tabcontent" style="background-color: #b3ccc;">
+   <div class="tab1" >
+       <button class="tablinks" onclick="opentab(event, 'user')">User Management</button>
+       <button class="tablinks" onclick="opentab(event, 'job')">Job Design</button>
+       <button class="tablinks" onclick="opentab(event, 'appraisal')">Appraisal</button>
+
+    </div>
+
+       <h3>Dashboard</h3>
+    <p> The dash board place</p>
+   </div>
+
+
+
+<div id="Dashboard" class="tabcontent">
+  <h3>Dashboard</h3>
+    <p> The dash board place</p></div>
+</div>
+<div id="Directory" class="tabcontent">
+  <h3>Directory</h3>
+    <p> The directory parts</p></div>
+</div>
+<div id="job" class="tabcontent">
+    <div class="form-style-2">
+    <div class="form-style-2-heading">Provide information</div>
+   <form action="recording" method="POST">
+       {% csrf_token %}
+   <label for="jobtitle"><span>Job title <span class="required">*   </span></span>  <input type="text" class="input-field" name="job_title" value="" /></label>
+   <label for="jobdepartment"><span>Job  <span class="required">*  </span></span><input type="text" class="input-field" name="job_department" value="" /> </label>
+   <label for="rank"><span>Rank <span class="required">*</span></span><input type="text" class="input-field" name="rank" value="" /></label>
+   <label for="salary"><span>  <span class="required">*</span></span><input type="text" class="input-field" name="salary" value="" /></label>
+
+   <label for="jobdescription"><span>Job description <span class="required">*</span></span><textarea name="job_description" class="textarea-field" cols="40" row="5"></textarea></label>
+
+       <label for="jobspecification"><span>Job description</span> <input type="file" name="job_spec">
+
+
+           <input type="submit" value="record">
+    </form>
+    </div>
+     <div style=" margin-left : 100px;">
+        <button class="myButton"> Save</button>
+        <button class="myButton"> Update</button>
+        <button class="deleteButton"> Delete </button>
+     </div>
+
+
+         <br>
+         <br>
+         <div class="form-style-2-heading"></div>
+         <br>
+<div class="container1"  >
+    <div class="colorstrip">
+        <center> Records </center>
+    </div>
+    <br>
+    <div style=" margin-left : 0px;">
+    <button class="myButton"> Save</button>
+    <button class="deleteButton"> Delete </button>
+     <br>
+      <br>
+
+<table class="blueTable" style=" width: 100%">
+<thead>
+<tr>
+     <th style="10"> Index </th>
+
+<th > Job title</th>
+<th>Job Department</th>
+<th>Job Grade</th>
+<th>Job Salary</th>
+<th>Job Description</th>
+<th>Job Specification</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="7">
+<div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
+</td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+    <td> <input type="checkbox">1</td>
+<td>cell1_1</td>
+<td>cell2_1</td>
+<td>cell3_1</td>
+<td>cell4_1</td>
+ <td>cell3_1</td>
+<td>cell4_1</td>
+</tr>
+
+    {% block content  %}
+    {% for dat in context %}
+
+       <tr>
+        <td><input type="checkbox">2</td>
+
+        <td> {{dat.job_title }}
+        <td> {{dat.job_department }}
+        <td> {{dat.job_rank }}
+        <td> {{dat.job_salary }}
+        <td> {{dat.job_description }}
+        <td> {{dat.job_specification }}
+
+           </tr>
+
+   {% endfor %}
+   {% endblock %}
+
+    </tbody>
+    </table>
+
+    </div>
+     </div>
+
+
+
+</div>
+
+
+
+</body>
+
+</html>
